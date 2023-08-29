@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useHistory } from "react-router";
 import { CurrentUser } from './contexts/CurrentUser';
 
@@ -22,6 +22,18 @@ function Navigation() {
             </li>
         </>
     )
+
+    let addPlaceButton = null
+
+    if(currentUser?.role !== 'admin') {
+        addPlaceButton = (
+            <li>
+                <a href="#" onClick={() => history.push('/places/new')}>
+                    Add Place
+                </a>
+            </li>
+        )
+    }
 
     if (currentUser) {
         loginActions = (
